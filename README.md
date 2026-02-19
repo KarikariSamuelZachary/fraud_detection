@@ -1,6 +1,3 @@
-
-![fraud](images/Slide1.png)
-
 # A machine learning model for fraud detection in mobile  transactions
 
 ### Project Overview
@@ -51,8 +48,6 @@ https://www.kaggle.com/ntnu-testimon/paysim1
 - 5.Feature Importance
 - 6.Conclusion
 - 7.Future Works
-
-
 
 ## 1.Loading Data and EDA
 ```python
