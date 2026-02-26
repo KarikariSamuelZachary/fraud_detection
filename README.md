@@ -31,8 +31,6 @@ https://www.kaggle.com/ntnu-testimon/paysim1
 **isFraud** - This is the transactions made by the fraudulent agents inside the simulation. In this specific dataset the fraudulent behavior of the agents aims to profit by taking control or customers accounts and try to empty the funds by transferring to another account and then cashing out of the system.
 
 **isFlaggedFraud** - The business model aims to control massive transfers from one account to another and flags illegal attempts. An illegal attempt in this dataset is an attempt to transfer more than 200.000 in a single transaction.
-
-![](bank.png)
 ### Project Steps
 
 - 1.Loading Data and EDA
@@ -95,9 +93,7 @@ plt.ylabel('Number of Transactions')
 plt.title('Distribution of Transactions over the Time')
 plt.legend()
 ```
-
-![fraud](images/Slide6.png)
-
+ 
 
 Eventhough safe transactions slows down in 3rd and 4th day and after 16th day of the month, fraud transactions happens at a steady pace. Especially in the second half of the month there are much less safe transactions but number of fraud transactions does not decrease at all.
 
@@ -115,8 +111,7 @@ plt.title('Hourly Transaction Amounts')
 ax = sns.scatterplot(x="step", y="amount", hue="isFraud",
                      data=smalldata)
 ```
-￼![fraud](images/Slide7.png)
-
+ 
 
 The plot clearly shows that there is some sort of seasonality in the number of transaction during the day. We observe a pattern every 24 hours. we do not know what time of the day '0' represent here but we observe highest transactions clusters around the middle of 24 hour period. It mught be noon or mid day. Lets see if fraud transactions has that kind of pattern.
 
@@ -128,9 +123,7 @@ plt.title('Hourly Fraud Transaction Amounts')
 ax = sns.scatterplot(x="step", y="amount", color='orange',
                      data=fraud)
 ```
-￼![fraud](images/Slide8.png)
-￼ 
-
+ 
 Fraud transactions does not show that significant pattern like safe ones in terms of number of accurance. They happen every hour almast in the same frequency. There are more fraud transactions in low amounts and less in high amount. But the pattern does not change time to time.
 
 ### Transaction Amount Distributions
@@ -157,9 +150,6 @@ Name: amount, Length: 3977, dtype: int64
 ```
 
 There are fraud transactions in $1M amount for 287 times. And this is the max amount of fraud transactions. Most of the frauds happens below $400000 so lets check the average amount for those transactions.
-
-￼![fraud](images/Slide9.png)
-
 
 Fraud transaction happens in a large range such as $119 to 10M. The Frequency distribution of Amount of money involved in Fraud transactions is Positively Skewed. Most of the fraud transactions are of Lesser amount. Majority of fraud transactions are lower than 1M. But in 1M there is an interesting increase similar to safe transactions. And that is also max amount in all fraud incidents. There are also some fraud labeled transaction that have 0 amount. This is strange. I want to see those instances, there are 16 of them.
 
@@ -195,10 +185,7 @@ fraud.amount.sum()/(safe.amount.sum()+fraud.amount.sum())
 0.010535206008606473
 ```
 Total money was stolen is 0.1% of safe transaction amount.
-
-￼![fraud](images/Slide5.png)
-
-
+ 
 
 ## 2. Feature Engineering
 
@@ -303,9 +290,7 @@ algoritms=[LogisticRegression,KNeighborsClassifier,RandomForestClassifier,XGBCla
 for algoritm in algoritms:
     ml_func (algoritm)
 ```
-![fraud](images/Slide11.png)
-
-
+ 
 ### 3.2. Grid Search for Best Hyper-Parameter
 In the above report we see the best training accuracy is from Random Forest Classifier. On the other hand the best test accuracy is from XGBoost Classifier. I would like to optimize these two model with grid search of multiple parameter values. Grid earch will help me to figure our best parameters to pass to the model to get the most accurate result. I will create a function for grid search named best_param. It will take parameter values and the classifer and print our the best parameter combinations. I will only run Random Forest and XGBoost models for the rest of the project since they are the best two.
 ```python
@@ -734,8 +719,7 @@ Best params:
 
  
 ```
-![fraud](images/Slide12.png)
-
+ 
 ## 5. Feature Importance
 
 Lets check whick features are the most influencial ones for both model.
@@ -754,9 +738,7 @@ ax.set_xlabel('Relative Feature Importance for XGBoost', size=12);
 ax.set_yticklabels(ax.get_yticklabels(), size = 12);
 ax.set_title('Feature Importance Order', size = 16);
 ```
-![fraud](images/Slide13.png)
-￼ 
-
+ 
 oldbalanceOrg and newbalanceDest are the major indicators XGboost model.
 
 
